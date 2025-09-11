@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h3>Editar producto</h3>
+<form method="post" action="{% url 'edit-product' product.id %}">
+  {% csrf_token %}
+  <div class="form-group mb-3">
+    <label>Nombre Producto</label>
+    <input type="text" name="name_product" class="form-control" value="{{ product.name }}">
+  </div>
+  <div class="form-group mb-3">
+    <label>Stock</label>
+    <input type="number" name="stock_product" class="form-control" value="{{ product.stock }}">
+  </div>
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" id="is_active" name="is_active" {% if product.is_active %}checked{% endif %}>
+    <label class="form-check-label" for="is_active">Activo</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Guardar</button>
+  <a href="{% url 'about' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}
